@@ -18,7 +18,7 @@ import { db } from "../firebase";
 
 function SideBar() {
   const [channels] = useCollection(db.collection("rooms"));
-  console.log(channels);
+
   return (
     <SidebarContainer>
       <SidebarHeader>
@@ -44,11 +44,7 @@ function SideBar() {
       <hr />
       <SidebarOption Icon={AddIcon} addChannelOption title="Add Channel" />
       {channels?.docs.map((doc) => (
-        <SidebarOption
-          title={doc.data().name}
-          key={doc.id}
-          id={doc.id}
-        />
+        <SidebarOption title={doc.data().name} key={doc.id} id={doc.id} />
       ))}
     </SidebarContainer>
   );

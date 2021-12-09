@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { db } from "../firebase";
-import { useCollection } from "react-firebase-hooks/firestore";
 import { useDispatch } from "react-redux";
 import { enterRoom } from "../features/appSlice";
 
 function SidebarOption({ Icon, title, addChannelOption, id }) {
   const dispatch = useDispatch();
-
-  const [channels] = useCollection(db.collection("rooms"));
   const addChannel = () => {
     const channelName = prompt("Please enter the Channel Name");
     if (channelName) {
