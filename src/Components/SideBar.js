@@ -14,10 +14,12 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function SideBar() {
   const [channels] = useCollection(db.collection("rooms"));
+  const [user] = useAuthState(auth);
 
   return (
     <SidebarContainer>
@@ -26,7 +28,7 @@ function SideBar() {
           <h2>Learning Chat</h2>
           <h3>
             <FiberManualRecordIcon />
-            Vikash Gupta
+            {user.displayName}
           </h3>
         </SidebarInfo>
         <CreateIcon />
